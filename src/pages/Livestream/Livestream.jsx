@@ -29,6 +29,8 @@ function Livestream(props) {
           },
         }).then((res) => {
           res.json().then((data) => {
+            console.log(data);
+            console.log(data.url);
             setVideoSrc(data.url);
           });
         });
