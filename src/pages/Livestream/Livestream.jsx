@@ -16,9 +16,10 @@ function Livestream(props) {
 
   useEffect(() => {
     fetch('https://larin.cam/issue-stream-url').then((res) => {
-      const url = res.json();
-      console.log(url);
-      setVideoSrc(url);
+      res.json()
+      .then(url => {
+        setVideoSrc(url)
+      })
     });
   }, []);
 
