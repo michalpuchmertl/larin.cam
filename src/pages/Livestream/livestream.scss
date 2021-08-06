@@ -1,0 +1,44 @@
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  > div {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+}
+
+.chat {
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  overflow-y: scroll;
+  padding: 0 10px;
+  max-height: 90vh;
+
+  .message {
+    background-color: #fff;
+    padding: 10px 8px;
+    border-radius: 10px;
+
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+
+    .username {
+      font-size: 0.7rem;
+      font-weight: 700;
+      opacity: 0.5;
+    }
+
+    .message-text {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+  }
+}
