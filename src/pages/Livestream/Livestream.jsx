@@ -12,7 +12,7 @@ import './livestream.scss';
 function Livestream(props) {
   let firebase = getFirebase();
 
-  const [videoSrc, setVideoSrc] = useState(null);
+  const [videoSrc, setVideoSrc] = useState('null');
 
   useEffect(() => {
     firebase
