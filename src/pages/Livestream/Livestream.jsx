@@ -28,10 +28,8 @@ function Livestream(props) {
             'Access-Control-Allow-Headers': '*',
           },
         }).then((res) => {
-          res.json().then((data) => {
-            console.log(data);
-            console.log(data.url);
-            setVideoSrc(data.url);
+          res.json().then((url) => {
+            setVideoSrc(url.data);
           });
         });
       })
