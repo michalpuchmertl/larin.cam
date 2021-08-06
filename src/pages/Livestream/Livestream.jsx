@@ -12,22 +12,37 @@ import './livestream.scss';
 function Livestream(props) {
   let firebase = getFirebase();
 
-  const [videoSrc, setVideoSrc] = useState(null);
+  const [videoSrc, setVideoSrc] = useState(
+    'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4'
+  );
 
   useEffect(() => {
-    fetch('https://larin.cam/issue-stream-url', {
-      method: 'GET',
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': '*',
-        'Access-Control-Allow-Headers': '*',
-      },
-    }).then((res) => {
-      res.json().then((url) => {
-        setVideoSrc(url);
+    firebase
+      .auth()
+      .currentUser.getIdToken(/* forceRefresh */ true)
+      .then(function (idToken) {
+        fetch('https://larin.cam/issue-stream-url', {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${idToken}`,
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': '*',
+            'Access-Control-Allow-Headers': '*',
+          },
+        }).then((res) => {
+          res.json().then((url) => {
+            setVideoSrc(url);
+          });
+        });
+      })
+      .catch(async function (error) {
+        await firebase.auth().signOut();
       });
-    });
   }, []);
+
+  const handleLogout = async () => {
+    await firebase.auth().signOut();
+  };
 
   console.log('SRC', videoSrc);
 
@@ -61,6 +76,11 @@ function Livestream(props) {
         </div>
         <div className='col-12 col-lg-3'>
           <Chat />
+        </div>
+        <div className='col-1'>
+          <button className='btn btn-danger' onClick={handleLogout}>
+            Log out
+          </button>
         </div>
       </div>
     </div>

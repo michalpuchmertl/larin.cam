@@ -68,27 +68,25 @@ export function RenderRoutes({ routes }) {
       <Switch>
         {routes.map((route, i) => {
           if (route.protected) {
-            if (authentication) {
-              return (
-                <Route
-                  path={route.path}
-                  exact={route.exact}
-                  render={(props) => (
-                    <route.component {...props} routes={route.routes} />
-                  )}
-                />
-              );
-            } else {
-              return <Redirect to='/login' />;
-            }
+            return (
+              <Route
+                path={route.path}
+                exact={route.exact}
+                render={(props) =>
+                  !authentication.authenticated ? (
+                    <Redirect to='/login' />
+                  ) : (
+                    <route.component {...props} />
+                  )
+                }
+              />
+            );
           }
           return (
             <Route
               path={route.path}
               exact={route.exact}
-              render={(props) => (
-                <route.component {...props} routes={route.routes} />
-              )}
+              render={(props) => <route.component {...props} />}
             />
           );
         })}

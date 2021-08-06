@@ -15,30 +15,40 @@
 .chat {
   background-color: #f0f0f0;
   border-radius: 20px;
-  overflow-y: scroll;
   padding: 0 10px;
   max-height: 90vh;
+  overflow: hidden;
+}
 
+.chat-header {
+  padding: 10px 5px;
+}
+
+.chat-body {
+  max-height: 500px;
+  overflow: scroll;
+  border-radius: 10px;
   .message {
     background-color: #fff;
-    padding: 10px 8px;
     border-radius: 10px;
-
+    padding: 5px 8px;
     img {
-      width: 30px;
       height: 30px;
+      width: 30px;
       border-radius: 50%;
     }
 
     .username {
-      font-size: 0.7rem;
-      font-weight: 700;
-      opacity: 0.5;
+      font-size: 0.8rem;
     }
 
     .message-text {
       font-size: 0.9rem;
+      opacity: 0.8;
       margin-bottom: 0;
     }
   }
+}
+
+.chat-footer {
 }

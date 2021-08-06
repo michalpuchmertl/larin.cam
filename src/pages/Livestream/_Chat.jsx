@@ -118,8 +118,19 @@ function Chat(props) {
 
   return (
     <div className='chat'>
-      <h1>Chat</h1>
-      <div className='messages'>{renderMessages()}</div>
+      <div className='chat-header d-flex justify-content-between'>
+        <span>CHAT</span>
+        <span>62 LIDÍ</span>
+      </div>
+      <div className='chat-body'>{renderMessages()}</div>
+      <div className='chat-footer'>
+        <form action=''>
+          <div className='form-group'>
+            <input type='text' placeholder='Zpráva' />
+            <button className='btn btn-primary'>SEND</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
