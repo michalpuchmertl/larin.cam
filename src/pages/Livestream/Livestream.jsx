@@ -20,6 +20,9 @@ function Livestream(props) {
     });
   }, []);
 
+
+  console.log("SRC", videoSrc)
+
   const videoJsOptions = {
     // lookup the options in the docs for more options
     autoplay: true,
