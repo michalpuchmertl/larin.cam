@@ -12,9 +12,7 @@ import './livestream.scss';
 function Livestream(props) {
   let firebase = getFirebase();
 
-  const [videoSrc, setVideoSrc] = useState(
-    'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4'
-  );
+  const [videoSrc, setVideoSrc] = useState(null);
 
   useEffect(() => {
     firebase
@@ -30,8 +28,8 @@ function Livestream(props) {
             'Access-Control-Allow-Headers': '*',
           },
         }).then((res) => {
-          res.json().then((url) => {
-            setVideoSrc(url);
+          res.json().then((data) => {
+            setVideoSrc(data.url);
           });
         });
       })
