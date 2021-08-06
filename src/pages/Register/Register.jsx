@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
 import { useForm, UseFormProps, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import schema from './schema.config';
@@ -11,6 +12,8 @@ function Register(props) {
     reValidateMode: 'onChange',
     resolver: yupResolver(schema),
   };
+
+  const history = useHistory();
 
   const { handleSubmit, register } = useForm(formOptions);
 
@@ -34,11 +37,40 @@ function Register(props) {
       .createUserWithEmailAndPassword(username, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        history.push('/');
       })
       .catch((error) => {
         console.error(error);
       });
   };
+
+    const [authentication, setAuthState] = useState({
+    authenticated: false,
+    initializing: true,
+  });
+
+  useEffect(
+    () =>
+      firebase.auth().onAuthStateChanged((user) => {
+        console.log('USER', user);
+        if (user) {
+          setAuthState({
+            authenticated: true,
+            initializing: false,
+          });
+        } else {
+          setAuthState({
+            authenticated: false,
+            initializing: false,
+          });
+        }
+      }),
+    [setAuthState]
+  );
+
+  if (authentication.authenticated) {
+    return <Redirect to='/' />;
+  }
 
   return (
     <div className='container'>
