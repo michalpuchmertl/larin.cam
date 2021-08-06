@@ -15,16 +15,21 @@ function Livestream(props) {
   const [videoSrc, setVideoSrc] = useState(null);
 
   useEffect(() => {
-    fetch('https://larin.cam/issue-stream-url').then((res) => {
-      res.json()
-      .then(url => {
-        setVideoSrc(url)
-      })
+    fetch('https://larin.cam/issue-stream-url', {
+      method: 'GET',
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': '*',
+        'Access-Control-Allow-Headers': '*',
+      },
+    }).then((res) => {
+      res.json().then((url) => {
+        setVideoSrc(url);
+      });
     });
   }, []);
 
-
-  console.log("SRC", videoSrc)
+  console.log('SRC', videoSrc);
 
   const videoJsOptions = {
     // lookup the options in the docs for more options

@@ -14,6 +14,7 @@ export const VideoJS = (props) => {
       <video
         ref={videoRef}
         className='video-js vjs-theme-city vjs-big-play-centered'
+        crossOrigin='anonymous'
       />
     </div>
   );
