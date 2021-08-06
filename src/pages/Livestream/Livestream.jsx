@@ -12,24 +12,12 @@ import './livestream.scss';
 function Livestream(props) {
   let firebase = getFirebase();
 
-  const [videoSrc, setVideoSrc] = useState('asd');
+  const [videoSrc, setVideoSrc] = useState(null);
 
   useEffect(() => {
-    var docRef = firebase.firestore().collection('paths').doc('livestream');
-
-    docRef
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          setVideoSrc(doc.data().url);
-        } else {
-          // doc.data() will be undefined in this case
-          console.log('No such document!');
-        }
-      })
-      .catch((error) => {
-        console.log('Error getting document:', error);
-      });
+    fetch('https://larin.cam/issue-stream-url').then((res) => {
+      setVideoSrc(res.json());
+    });
   }, []);
 
   const videoJsOptions = {
@@ -41,7 +29,7 @@ function Livestream(props) {
     fluid: true,
     sources: [
       {
-        src: 'http://192.168.0.116/play.m3u8',
+        src: videoSrc,
         type: 'application/x-mpegURL',
       },
     ],
