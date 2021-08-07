@@ -65,22 +65,21 @@ function Livestream(props) {
 
   return (
     <div className='container'>
-      Livestream
-      <div className='row'>
+      <div className='row mt-3'>
         <div className='col-12 col-lg-9'>
           <div className='video-wrapper'>
             <VideoJS options={videoJsOptions} />
           </div>
         </div>
-        <div className='col-12 col-lg-3'>
+        <div className='col-12 col-lg-3 mt-3 mt-lg-0'>
           <Chat />
         </div>
-        <div className='col-1'>
-          <button className='btn btn-danger' onClick={handleLogout}>
-            Log out
-          </button>
-        </div>
       </div>
+      <div className='text-start mt-3'>
+            <button className='btn btn-danger text-left' onClick={handleLogout}>
+                Log out
+            </button>
+          </div>
     </div>
   );
 }

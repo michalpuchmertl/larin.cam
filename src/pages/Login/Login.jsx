@@ -7,6 +7,8 @@ import getFirebase from '../../utils/firebase';
 
 import { UserContext } from '../../providers/UserContext';
 
+import './login.scss'
+
 function Register(props) {
   const userContext = useContext(UserContext);
   const history = useHistory();
@@ -82,12 +84,12 @@ function Register(props) {
 
   return (
     <div className='container'>
-      <h1>Sign in</h1>
       <form
         action=''
         onSubmit={handleSubmit(prepareRequest)}
-        className='mt-3 col-12 col-md-5 mx-auto'
+        className='mt-3 col-12 col-md-5 mx-auto sign-in-form'
       >
+            <h1>Přihlášení</h1>
         <div className='form-group'>
           <label htmlFor='username'>Email</label>
           <input
@@ -99,8 +101,8 @@ function Register(props) {
           />
         </div>
 
-        <div className='form-group'>
-          <label htmlFor='password'>Password</label>
+        <div className='form-group mt-2'>
+          <label htmlFor='password'>Heslo</label>
           <input
             {...register('password', {
               minLength: {
@@ -116,7 +118,7 @@ function Register(props) {
         </div>
 
         <button className='btn btn-primary mt-4 w-100' type='submit'>
-          Register
+          Přihlásit se
         </button>
       </form>
     </div>
