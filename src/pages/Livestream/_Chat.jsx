@@ -24,7 +24,7 @@ function Chat(props) {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io('ws://chat.larin.cam');
+    const newSocket = io('wss://chat.larin.cam');
     setSocket(newSocket);
 
     return () => newSocket.close();
