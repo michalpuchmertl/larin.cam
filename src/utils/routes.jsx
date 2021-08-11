@@ -17,19 +17,6 @@ export const ROUTES = [
     exact: true,
     component: () => <Login />,
   },
-  {
-    path: '/register',
-    key: 'REGISTER',
-    exact: true,
-    component: () => <Register />,
-  },
-  {
-    path: '/admin',
-    key: 'ADMIN',
-    exact: true,
-    protected: true,
-    component: () => <Livestream />,
-  },
 ];
 
 export function RenderRoutes({ routes }) {
